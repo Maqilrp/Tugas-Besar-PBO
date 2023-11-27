@@ -9,5 +9,5 @@ package Kamar;
  * @author HP
  */
 public class Kamar {
-    
+    String kasur;
 }
