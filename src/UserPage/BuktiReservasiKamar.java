@@ -8,12 +8,12 @@ package UserPage;
  *
  * @author AqilR
  */
-public class BuktiReservasi extends javax.swing.JFrame {
+public class BuktiReservasiKamar extends javax.swing.JFrame {
 
     /**
      * Creates new form BuktiReservasi
      */
-    public BuktiReservasi() {
+    public BuktiReservasiKamar() {
         initComponents();
     }
 
@@ -48,7 +48,6 @@ public class BuktiReservasi extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("BUKTI RESERVASI");
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\AqilR\\Pictures\\FB_IMG_1668341303021.jpg")); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel3.setText("KAMAR DELUXE");
@@ -190,20 +189,21 @@ public class BuktiReservasi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuktiReservasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuktiReservasiKamar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuktiReservasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuktiReservasiKamar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuktiReservasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuktiReservasiKamar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuktiReservasi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuktiReservasiKamar.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new BuktiReservasi().setVisible(true);
+                new BuktiReservasiKamar().setVisible(true);
             }
         });
     }
