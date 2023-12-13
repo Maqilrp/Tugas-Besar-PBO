@@ -8,11 +8,17 @@ package UserPage;
  *
  * @author Martin Rahman Hakim
  */
+import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.*;
 public class Login extends javax.swing.JFrame {
 
   /**
    * Creates new form Login
    */
+    private JTextField emailField;
+    private JPasswordField passwordField;
   public Login (){
     initComponents();
   }
@@ -77,6 +83,11 @@ public class Login extends javax.swing.JFrame {
 
         jTextField2.setBackground(new java.awt.Color(217, 217, 217));
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jButton1.setBackground(new java.awt.Color(217, 217, 217));
         jButton1.setText("Login");
@@ -319,11 +330,75 @@ public class Login extends javax.swing.JFrame {
 
   private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
     // TODO add your handling code here:
+    String enteredEmail = jTextField1.getText();
+    
+    // Contoh: Validasi sederhana untuk memastikan email tidak kosong
+    if (enteredEmail.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Email tidak boleh kosong!");
+    } else {
+        // Logika lain yang diinginkan jika email valid
+    }
   }//GEN-LAST:event_jTextField1ActionPerformed
 
   private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    // TODO add your handling code here:
+    // TODO add your haString enteredEmail = emailField.getText();
+    String enteredEmail = emailField.getText();
+    String enteredPassword = new String(passwordField.getPassword()); // Perlu konversi char[] ke String
+
+    // Lakukan verifikasi login dengan nilai yang ada di database
+    if (validateLogin(enteredEmail, enteredPassword)) {
+        // Jika login berhasil
+        JOptionPane.showMessageDialog(null, "Login Berhasil!");
+        // Lakukan aksi tambahan setelah login berhasil (contoh: buka halaman utama)
+    } else {
+        // Jika login gagal
+        JOptionPane.showMessageDialog(null, "Login Gagal. Email atau Password salah.");
+    }
+}
+
+private boolean validateLogin(String enteredEmail, String enteredPassword) {
+    try {
+        // Lakukan koneksi ke database dan eksekusi query verifikasi login
+        Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/hotels", "root", "");
+        String query = "SELECT * FROM users WHERE email = ? AND password = ?";
+        PreparedStatement statement = conn.prepareStatement(query);
+        statement.setString(1, enteredEmail);
+        statement.setString(2, enteredPassword);
+
+        ResultSet resultSet = statement.executeQuery();
+
+        // Jika hasil query mengandung baris, maka login berhasil
+        if (resultSet.next()) {
+            resultSet.close();
+            statement.close();
+            conn.close();
+            return true;
+        }
+
+        // Tutup koneksi
+        resultSet.close();
+        statement.close();
+        conn.close();
+    } catch (SQLException ex) {
+        ex.printStackTrace();
+    }
+
+    // Jika tidak ada baris yang cocok, maka login gagal
+    return false;
+//handling code here:
   }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+        String enteredPassword = jTextField2.getText();
+    
+    // Contoh: Validasi sederhana untuk memastikan password tidak kosong
+    if (enteredPassword.isEmpty()) {
+        JOptionPane.showMessageDialog(null, "Password tidak boleh kosong!");
+    } else {
+        // Logika lain yang diinginkan jika password valid
+    }
+    }//GEN-LAST:event_jTextField2ActionPerformed
 
   /**
    * @param args the command line arguments
